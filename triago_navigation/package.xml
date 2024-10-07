@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>triago_navigation</name>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <description>The triago Navigation metapackage</description>
   <author email="martina.annicelli@pal-robotics.com">Martina Annicelli</author>
   <maintainer email="martina.annicelli@pal-robotics.com">Martina Annicelli</maintainer>
