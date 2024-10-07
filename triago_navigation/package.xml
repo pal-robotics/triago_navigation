@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>triago_navigation</name>
+  <version>0.0.0</version>
+  <description>The triago Navigation metapackage</description>
+  <author email="martina.annicelli@pal-robotics.com">Martina Annicelli</author>
+  <maintainer email="martina.annicelli@pal-robotics.com">Martina Annicelli</maintainer>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake_auto</buildtool_depend>
+
+
+  <exec_depend>triago_laser_sensors</exec_depend>
+  <exec_depend>triago_2dnav</exec_depend>
+  <exec_depend>triago_rgbd_sensors</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
