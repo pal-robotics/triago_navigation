@@ -2,6 +2,9 @@
 Changelog for package triago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.1.0 (2024-10-07)
 ------------------
 * Merge branch 'man/triago-nav' into 'main'
