@@ -2,8 +2,8 @@
 Changelog for package triago_rgbd_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.2 (2024-10-08)
+------------------
 * Merge branch 'man/triago-nav' into 'main'
   robot name omni_base
   See merge request robots/triago_navigation!3
