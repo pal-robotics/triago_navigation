@@ -59,7 +59,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         launch_arguments={
             "params_pkg": "triago_laser_sensors",
             "params_file": "laser_pipeline_sim_multi.yaml",
-            "robot_name": "triago",
+            "robot_name": "omni_base",
             "remappings_file": remmaping_file,
         }
     )
@@ -70,7 +70,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         launch_arguments={
             "params_pkg": "triago_2dnav",
             "params_file": "triago_nav.yaml",
-            "robot_name": "triago",
+            "robot_name": "omni_base",
             "remappings_file": remmaping_file,
         }
     )
@@ -81,7 +81,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         launch_arguments={
             "params_pkg": "triago_2dnav",
             "params_file": "triago_slam.yaml",
-            "robot_name": "triago",
+            "robot_name": "omni_base",
         },
         condition=IfCondition(LaunchConfiguration("slam"))
     )
@@ -92,7 +92,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         launch_arguments={
             "params_pkg": "triago_2dnav",
             "params_file": "triago_loc.yaml",
-            "robot_name": "triago",
+            "robot_name": "omni_base",
         },
         condition=UnlessCondition(LaunchConfiguration("slam"))
     )
