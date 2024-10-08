@@ -2,6 +2,15 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'man/triago-nav' into 'main'
+  robot name omni_base
+  See merge request robots/triago_navigation!3
+* robot type omni_base
+* robot name omni_base
+* Contributors: andreacapodacqua, martinaannicelli
+
 0.1.1 (2024-10-07)
 ------------------
 
