@@ -2,6 +2,15 @@
 Changelog for package triago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'man/triago-nav' into 'main'
+  changed modules
+  See merge request robots/triago_navigation!4
+* Apply 1 suggestion(s) to 1 file(s)
+* changed modules
+* Contributors: antoniobrandi, martinaannicelli
+
 0.1.2 (2024-10-08)
 ------------------
 * Merge branch 'man/triago-nav' into 'main'
