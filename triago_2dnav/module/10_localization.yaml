@@ -1,4 +1,4 @@
 localization:
   launch: "pal_nav2_bringup nav_bringup.launch.py
-          params_file:=triago_loc.yaml
+          params_file:=omni_base_loc.yaml
           robot_name:=omni_base"
