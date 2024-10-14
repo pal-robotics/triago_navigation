@@ -118,4 +118,3 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     ld.add_action(rviz_node)
 
     return ld
-
