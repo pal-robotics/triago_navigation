@@ -2,6 +2,14 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'man/feat/nav-rviz-config' into 'main'
+  added unless condition to rviz nav
+  See merge request robots/triago_navigation!5
+* added unless condition to rviz nav
+* Contributors: antoniobrandi, martinaannicelli
+
 0.1.3 (2024-10-14)
 ------------------
 * Merge branch 'man/triago-nav' into 'main'

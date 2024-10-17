@@ -2,6 +2,9 @@
 Changelog for package triago_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.1.3 (2024-10-14)
 ------------------
 
