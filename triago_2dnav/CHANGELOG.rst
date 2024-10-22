@@ -2,6 +2,9 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.2.0 (2024-10-17)
 ------------------
 * Merge branch 'man/feat/nav-rviz-config' into 'main'

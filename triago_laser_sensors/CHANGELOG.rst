@@ -2,6 +2,14 @@
 Changelog for package triago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'man/fix-nav' into 'main'
+  new pipeline
+  See merge request robots/triago_navigation!7
+* new pipeline
+* Contributors: antoniobrandi, martinaannicelli
+
 0.2.0 (2024-10-17)
 ------------------
 
