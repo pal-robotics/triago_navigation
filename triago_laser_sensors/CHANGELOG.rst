@@ -2,6 +2,9 @@
 Changelog for package triago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.3.1 (2024-10-23)
 ------------------
 * abr/fix/laser-pipeline

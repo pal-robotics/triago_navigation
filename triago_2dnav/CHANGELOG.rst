@@ -2,6 +2,14 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'abr/feat/triago-nav' into 'main'
+  fixed triago nav, using mppi and planar drive
+  See merge request robots/triago_navigation!8
+* fixed triago nav, using mppi and planar drive
+* Contributors: antoniobrandi
+
 0.3.1 (2024-10-23)
 ------------------
 
