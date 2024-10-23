@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>triago_2dnav</name>
-  <version>0.3.1</version>
+  <version>0.3.2</version>
   <description>triago-specific launch files needed to run navigation on the triago robot.</description>
   <author email="martina.annicelli@pal-robotics.com">Martina Annicelli</author>
   <maintainer email="martina.annicelli@pal-robotics.com">Martina Annicelli</maintainer>
