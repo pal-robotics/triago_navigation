@@ -52,13 +52,13 @@ def generate_launch_description():
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
 
     triago_2dnav = get_package_share_directory("triago_2dnav")
-    remmaping_file = os.path.join("omni_base_2dnav", "params", "omni_base_remappings_sim.yaml")
+    remmaping_file = os.path.join(triago_2dnav, "params", "triago_remappings_sim.yaml")
 
     laser_bringup_launch = include_scoped_launch_py_description(
         pkg_name="pal_nav2_bringup",
         paths=["launch", "nav_bringup.launch.py"],
         launch_arguments={
-            "params_pkg": "omni_base_laser_sensors",
+            "params_pkg": "triago_laser_sensors",
             "params_file": "laser_pipeline_sim_multi.yaml",
             "robot_name": "omni_base",
             "remappings_file": remmaping_file,
@@ -69,8 +69,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         pkg_name="pal_nav2_bringup",
         paths=["launch", "nav_bringup.launch.py"],
         launch_arguments={
-            "params_pkg": "omni_base_2dnav",
-            "params_file": "omni_base_nav.yaml",
+            "params_pkg": "triago_2dnav",
+            "params_file": "triago_nav.yaml",
             "robot_name": "omni_base",
             "remappings_file": remmaping_file,
         }
@@ -80,8 +80,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         pkg_name="pal_nav2_bringup",
         paths=["launch", "nav_bringup.launch.py"],
         launch_arguments={
-            "params_pkg": "omni_base_2dnav",
-            "params_file": "omni_base_slam.yaml",
+            "params_pkg": "triago_2dnav",
+            "params_file": "triago_slam.yaml",
             "robot_name": "omni_base",
         },
         condition=IfCondition(LaunchConfiguration("slam"))
@@ -91,8 +91,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         pkg_name="pal_nav2_bringup",
         paths=["launch", "nav_bringup.launch.py"],
         launch_arguments={
-            "params_pkg": "omni_base_2dnav",
-            "params_file": "omni_base_loc.yaml",
+            "params_pkg": "triago_2dnav",
+            "params_file": "triago_loc.yaml",
             "robot_name": "omni_base",
         },
         condition=UnlessCondition(LaunchConfiguration("slam"))
@@ -112,11 +112,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     )
 
     # Create the launch description and populate
-    ld = LaunchDescription()
-    ld.add_action(laser_bringup_launch)
-    ld.add_action(slam_bringup_launch)
-    ld.add_action(nav_bringup_launch)
-    ld.add_action(loc_bringup_launch)
-    ld.add_action(rviz_node)
-
-    return ld
+    launch_description.add_action(laser_bringup_launch)
+    launch_description.add_action(slam_bringup_launch)
+    launch_description.add_action(nav_bringup_launch)
+    launch_description.add_action(loc_bringup_launch)
+    launch_description.add_action(rviz_node)
