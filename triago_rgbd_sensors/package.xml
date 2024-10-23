@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>triago_rgbd_sensors</name>
-  <version>0.3.0</version>
+  <version>0.3.1</version>
   <description>triago-specific rgbd sensors launch and config files.</description>
   <author email="martina.annicelli@pal-robotocs.com">Martina Annicelli</author>
   <maintainer email="martina.annicelli@pal-robotics.com">Martina Annicelli</maintainer>
