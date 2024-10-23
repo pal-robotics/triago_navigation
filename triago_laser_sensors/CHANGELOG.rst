@@ -2,6 +2,11 @@
 Changelog for package triago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* abr/fix/laser-pipeline
+* Contributors: antoniobrandi
+
 0.3.0 (2024-10-22)
 ------------------
 * Merge branch 'man/fix-nav' into 'main'
