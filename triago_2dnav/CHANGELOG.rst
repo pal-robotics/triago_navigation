@@ -2,8 +2,8 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.3 (2024-10-25)
+------------------
 * Merge branch 'man/nav-dep' into 'main'
   added omni 2dnav
   See merge request robots/triago_navigation!10
