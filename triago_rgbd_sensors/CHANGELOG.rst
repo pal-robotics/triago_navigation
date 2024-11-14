@@ -2,8 +2,8 @@
 Changelog for package triago_rgbd_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.0 (2024-11-14)
+------------------
 * Merge branch 'abr/feat/nav-params' into 'main'
   register nav variables and pipelines
   See merge request robots/triago_navigation!11
