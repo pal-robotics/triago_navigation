@@ -2,6 +2,14 @@
 Changelog for package triago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'abr/feat/nav-params' into 'main'
+  register nav variables and pipelines
+  See merge request robots/triago_navigation!11
+* register nav variables and pipelines
+* Contributors: antoniobrandi
+
 0.3.3 (2024-10-25)
 ------------------
 
