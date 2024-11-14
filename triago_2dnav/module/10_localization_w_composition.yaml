@@ -1,5 +1,4 @@
 localization_w_composition:
-  launch: "pal_nav2_bringup nav_bringup.launch.py
-          params_pkg:=triago_navigation
-          params_file:=triago_loc_w_composition.yaml
-          robot_name:=omni_base"
+  launch: "pal_navigation_cfg_utils pipeline_executor.launch.py
+          pipeline:=localization_w_composition
+          robot_name:=@base_type@"

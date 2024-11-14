@@ -20,18 +20,22 @@ from dataclasses import dataclass
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
+    OpaqueFunction,
 )
 from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from launch_pal.robot_arguments import CommonArgs
 from launch_pal.arg_utils import LaunchArgumentsBase
+from launch_pal.arg_utils import read_launch_argument
 from launch_pal.include_utils import include_scoped_launch_py_description
+from triago_description.launch_arguments import TriagoArgs
 
 
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
 
+    base_type: DeclareLaunchArgument = TriagoArgs.base_type
     slam: DeclareLaunchArgument = CommonArgs.slam
     advanced_navigation: DeclareLaunchArgument = CommonArgs.advanced_navigation
 
@@ -49,53 +53,48 @@ def generate_launch_description():
     return ld
 
 
-def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
+def private_nav_function(context, *args, **kwargs):
 
+    base_type = read_launch_argument("base_type", context)
+    actions = []
     triago_2dnav = get_package_share_directory("triago_2dnav")
-    remmaping_file = os.path.join(triago_2dnav, "params", "triago_remappings_sim.yaml")
-
-    laser_bringup_launch = include_scoped_launch_py_description(
-        pkg_name="pal_nav2_bringup",
-        paths=["launch", "nav_bringup.launch.py"],
-        launch_arguments={
-            "params_pkg": "triago_laser_sensors",
-            "params_file": "laser_pipeline_sim_multi.yaml",
-            "robot_name": "omni_base",
-            "remappings_file": remmaping_file,
-        }
-    )
 
     nav_bringup_launch = include_scoped_launch_py_description(
-        pkg_name="pal_nav2_bringup",
-        paths=["launch", "nav_bringup.launch.py"],
+        pkg_name="pal_navigation_cfg_utils",
+        paths=["launch", "pipeline_executor.launch.py"],
         launch_arguments={
-            "params_pkg": "triago_2dnav",
-            "params_file": "triago_nav.yaml",
-            "robot_name": "omni_base",
-            "remappings_file": remmaping_file,
-        }
+            "pipeline": "navigation",
+            "robot_name": base_type,
+        },
     )
 
     slam_bringup_launch = include_scoped_launch_py_description(
-        pkg_name="pal_nav2_bringup",
-        paths=["launch", "nav_bringup.launch.py"],
+        pkg_name="pal_navigation_cfg_utils",
+        paths=["launch", "pipeline_executor.launch.py"],
         launch_arguments={
-            "params_pkg": "triago_2dnav",
-            "params_file": "triago_slam.yaml",
-            "robot_name": "omni_base",
+            "pipeline": "slam",
+            "robot_name": base_type,
         },
         condition=IfCondition(LaunchConfiguration("slam"))
     )
 
     loc_bringup_launch = include_scoped_launch_py_description(
-        pkg_name="pal_nav2_bringup",
-        paths=["launch", "nav_bringup.launch.py"],
+        pkg_name="pal_navigation_cfg_utils",
+        paths=["launch", "pipeline_executor.launch.py"],
         launch_arguments={
-            "params_pkg": "triago_2dnav",
-            "params_file": "triago_loc.yaml",
-            "robot_name": "omni_base",
+            "pipeline": "localization",
+            "robot_name": base_type,
         },
         condition=UnlessCondition(LaunchConfiguration("slam"))
+    )
+
+    laser_bringup_launch = include_scoped_launch_py_description(
+        pkg_name="pal_navigation_cfg_utils",
+        paths=["launch", "pipeline_executor.launch.py"],
+        launch_arguments={
+            "pipeline": "laser_sim",
+            "robot_name": base_type,
+        },
     )
 
     rviz_node = Node(
@@ -103,17 +102,27 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         package="rviz2",
         executable="rviz2",
         arguments=["-d", os.path.join(
-                triago_2dnav,
-                "config",
-                "rviz",
-                "navigation.rviz",
+            triago_2dnav,
+            "config",
+            "rviz",
+            "navigation.rviz",
         )],
         output="screen",
     )
 
-    # Create the launch description and populate
-    launch_description.add_action(laser_bringup_launch)
-    launch_description.add_action(slam_bringup_launch)
-    launch_description.add_action(nav_bringup_launch)
-    launch_description.add_action(loc_bringup_launch)
-    launch_description.add_action(rviz_node)
+    actions.append(laser_bringup_launch)
+    actions.append(slam_bringup_launch)
+    actions.append(nav_bringup_launch)
+    actions.append(loc_bringup_launch)
+    actions.append(rviz_node)
+
+    return actions
+
+
+def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
+
+    launch_description.add_action(
+        OpaqueFunction(
+            function=private_nav_function,
+        )
+    )
