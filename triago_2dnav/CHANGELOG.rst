@@ -2,8 +2,8 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.5.0 (2024-11-29)
+------------------
 * Merge branch 'abr/feat/pd-controller' into 'main'
   use PD for cartesian controller
   See merge request robots/triago_navigation!13
