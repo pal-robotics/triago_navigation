@@ -2,6 +2,15 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'abr/feat/pd-controller' into 'main'
+  use PD for cartesian controller
+  See merge request robots/triago_navigation!13
+* start rviz with use_public_sim
+* use PD for cartesian controller
+* Contributors: antoniobrandi
+
 0.4.0 (2024-11-14)
 ------------------
 * Merge branch 'abr/feat/nav-params' into 'main'
