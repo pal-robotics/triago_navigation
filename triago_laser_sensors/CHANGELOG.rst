@@ -2,6 +2,15 @@
 Changelog for package triago_laser_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'abr/feat/deps-and-specs' into 'main'
+  nav deps and specs
+  See merge request robots/triago_navigation!15
+* nav deps and specifics
+* fix dep
+* Contributors: andreacapodacqua, antoniobrandi
+
 0.5.0 (2024-11-29)
 ------------------
 
