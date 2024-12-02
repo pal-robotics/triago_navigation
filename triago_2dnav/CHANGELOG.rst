@@ -2,8 +2,8 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.0 (2024-12-02)
+------------------
 * Merge branch 'abr/feat/deps-and-specs' into 'main'
   nav deps and specs
   See merge request robots/triago_navigation!15
