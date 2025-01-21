@@ -147,8 +147,6 @@ def main(args=None):
 
     node._action_client.wait_for_server()
 
-    node.get_logger().info('Starting navigation routine...')
-
     node.send_goal('home', False)
 
     node.send_goal('torso_up', False)
@@ -163,8 +161,11 @@ def main(args=None):
 
     node.navigation_routine(8)
 
-    node.get_logger().info('Path cleared after navigation.')
+    node._speed_publisher.publish(node.speed_limit_msg(0.4))
+    node.navigation_routine(12)
 
+    node.get_logger().info('Path cleared after navigation.')
+if
     rclpy.spin_once(node)
     executor.shutdown()
     executor_thread.join()
