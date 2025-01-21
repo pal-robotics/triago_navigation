@@ -76,7 +76,7 @@ class CartesianNavigationDemo(Node):
         goal = PoseStamped()
         goal.header.frame_id = 'base_footprint'
         goal.header.stamp = rclpy.time.Time().to_msg()
-        goal.pose.position.x = 2.0
+        goal.pose.position.x = 1.0
 
         path = Path()
         path.header.frame_id = 'base_footprint'
@@ -99,7 +99,7 @@ class CartesianNavigationDemo(Node):
         navigator.destroyNode()
 
         goal.pose.position.x = 0.0
-        goal.pose.position.y = 2.0
+        goal.pose.position.y = 1.0
         path.poses.append(goal)
         print(path)
         navigator = BasicNavigator(node_name='navigator_{}'.format(i+2))
@@ -158,7 +158,7 @@ def main(args=None):
     node._speed_publisher.publish(node.speed_limit_msg(0.4))
     node.navigation_routine(4)
 
-    node._speed_publisher.publish(node.speed_limit_msg(0.8))
+    node._speed_publisher.publish(node.speed_limit_msg(0.0))
     node.send_goal('torso_down', False)
 
     node.navigation_routine(8)
