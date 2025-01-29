@@ -185,6 +185,7 @@ def main(args=None):
     ### TORSO UP WITH 0.4 SPEED ###
     print("Torso up half speed")
     node._speed_publisher.publish(node.speed_limit_msg(0.4))
+    node.send_goal("horizontal_reach", False)
     node.start_periodic_move()
     time.sleep(10)
     node.navigation_routine(4)
@@ -202,6 +203,7 @@ def main(args=None):
     # TODO: CHECK IF THE ARMS ARE COLLIDING WITH THE BASE - IN CASE CHANGE CHANGE MOTIONS
     print("Torso down 0.4 speed")
     node._speed_publisher.publish(node.speed_limit_msg(0.4))
+    node.send_goal("horizontal_reach", False)
     node.start_periodic_move()
     time.sleep(10)
     node.navigation_routine(12)
