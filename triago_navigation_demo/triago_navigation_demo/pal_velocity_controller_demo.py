@@ -23,11 +23,11 @@ class VelocityControllerDemo(Node):
         self._vel_action_client = ActionClient(self, LimitedTimeDriving, '/limited_time_driving')
         self._is_vel_successful = None
 
-    def send_goal(self, a, b):
+    def send_goal(self, motion, skip_plan):
         self._is_successful = None
         goal_msg = PlayMotion2.Goal()
-        goal_msg.motion_name = a
-        goal_msg.skip_planning = b
+        goal_msg.motion_name = motion
+        goal_msg.skip_planning = skip_plan
         self._action_client.wait_for_server()
         future = self._action_client.send_goal_async(goal_msg)
         future.add_done_callback(self.goal_response_callback)
@@ -44,10 +44,10 @@ class VelocityControllerDemo(Node):
 
         if not goal_handle.accepted:
             self._is_successful = False
-            self.get_logger().error("Goal rejected")
+            self.get_logger().error("PlayMotion2 goal rejected")
             return
 
-        self.get_logger().info("Goal accepted")
+        self.get_logger().info("PlayMotion2 goal accepted")
         self._get_result_future = goal_handle.get_result_async()
         self._get_result_future.add_done_callback(self.get_result_callback)
 
@@ -63,14 +63,13 @@ class VelocityControllerDemo(Node):
 
     # Limited Velocity Driving Handling
 
-    def send_vel_goal(self, a, b, c, d, e):
+    def send_vel_goal(self, vel_x, vel_y, ang_vel, d):
         self._is_vel_successful = None
         goal_msg = LimitedTimeDriving.Goal()
-        goal_msg.linear_vel_x = a
-        goal_msg.linear_vel_y = b
-        goal_msg.angular_vel = c
+        goal_msg.linear_vel_x = vel_x
+        goal_msg.linear_vel_y = vel_y
+        goal_msg.angular_vel = ang_vel
         goal_msg.duration = d
-        goal_msg.topic_name = e
         self._vel_action_client.wait_for_server()
         future = self._vel_action_client.send_goal_async(goal_msg)
         future.add_done_callback(self.vel_goal_response_callback)
@@ -79,7 +78,7 @@ class VelocityControllerDemo(Node):
             time.sleep(1.0)
             rclpy.spin_once(self)
         if not self._is_vel_successful:
-            self.get_logger().error("Action failed")
+            self.get_logger().error("Speed Publishing failed")
             return
     
     def vel_goal_response_callback(self, future):
@@ -99,10 +98,9 @@ class VelocityControllerDemo(Node):
         error = result.error_code
         if error == 0:
             self._is_vel_successful = True
-            self.get_logger().info("Limited Time Driving succeeded")
         else:
             self._is_vel_successful = False
-            self.get_logger().error("Limited Time Driving failed with error {}".format(error))
+            self.get_logger().error("Speed Publishing failed with error {}".format(error))
 
 
 
@@ -116,19 +114,25 @@ def main(args=None):
 
     node._action_client.wait_for_server()
     node._vel_action_client.wait_for_server()
+ 
+    node.get_logger().info('Starting pal_velocity_controller Demo.')
 
+    node.get_logger().info('Motion HOME starting.')
     node.send_goal('home', False)
+    node.get_logger().info('Motion torso_down starting.')
     node.send_goal('torso_down', False)
 
-    node.get_logger().info('Starting first navigation routine.')
-    node.send_vel_goal(0.5, 0.0, 0.0, 2.0, '/cmd_vel')
-    node.send_vel_goal(0.0, 0.5, 0.0, 2.0, '/cmd_vel')
-    node.send_vel_goal(0.0, 0.0, 0.35, 2.0, '/cmd_vel')
+    node.get_logger().info('Start navigating.')
+    node.send_vel_goal(0.5, 0.0, 0.0, 2.0)
+    node.send_vel_goal(0.0, 0.5, 0.0, 2.0)
+    node.send_vel_goal(0.0, 0.0, 0.35, 2.0)
 
+    node.get_logger().info('Motion torso_up starting.')
     node.send_goal('torso_up', False)
-    node.send_vel_goal(0.0, 0.0, -0.35, 2.0, '/cmd_vel')
-    node.send_vel_goal(0.0, -0.5, 0.0, 2.0, '/cmd_vel')
-    node.send_vel_goal(-0.5, 0.0, 0.0, 2.0, '/cmd_vel')
+    node.get_logger().info('Start navigating.')
+    node.send_vel_goal(0.0, 0.0, -0.35, 2.0)
+    node.send_vel_goal(0.0, -0.5, 0.0, 2.0)
+    node.send_vel_goal(-0.5, 0.0, 0.0, 2.0)
 
     node.get_logger().info('Path cleared after navigation.')
 
