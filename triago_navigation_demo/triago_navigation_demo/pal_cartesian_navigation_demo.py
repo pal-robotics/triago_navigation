@@ -9,7 +9,6 @@ from nav_msgs.msg import Path
 from play_motion2_msgs.action import PlayMotion2
 import rcl_interfaces
 from geometry_msgs.msg import PoseStamped
-from action_msgs.msg import GoalStatus
 
 import threading
 import subprocess
@@ -73,7 +72,7 @@ class CartesianNavigationDemo(Node):
         return msg
 
     def start_periodic_move(self):
-        '''Start the launch file in a separate thread.'''
+        """Start the launch file in a separate thread."""
 
         def run_launch():
             launch_command = [
@@ -81,7 +80,8 @@ class CartesianNavigationDemo(Node):
                 'launch',
                 'periodic_move_joint',
                 'periodic_move_joint.launch.py',
-                'config:=triago_navigation/triago_navigation_demo/triago_navigation_demo/triago_full_body.yaml',
+                'config:=triago_navigation/triago_navigation_demo/triago_navigation_demo/'
+                'triago_full_body.yaml',
             ]
             self.get_logger().info(f"Starting launch file: {' '.join(launch_command)}")
             self.launch_process = subprocess.Popen(
@@ -93,7 +93,7 @@ class CartesianNavigationDemo(Node):
         self.launch_thread.start()
 
     def stop_periodic_move(self):
-        '''Stop the launch file by sending a SIGINT signal.'''
+        """Stop the launch file by sending a SIGINT signal."""
         if self.launch_process is not None:
             self.get_logger().info('Stopping periodic move joints...')
             self.launch_process.send_signal(signal.SIGINT)
@@ -171,7 +171,7 @@ def main(args=None):
     executor_thread.start()
 
     node._action_client.wait_for_server()
-    
+
     node.get_logger().info('Starting pal_cartesian_navigation Demo.')
 
     node.get_logger().info('Motion HOME starting.')
@@ -200,7 +200,6 @@ def main(args=None):
     node.send_goal('torso_up', False)
     node.get_logger().info('Start navigating.')
     node.navigation_routine(8)
-
 
     node.get_logger().info('Setting velocity to half of the maximum value.')
     node._speed_publisher.publish(node.speed_limit_msg(0.4))

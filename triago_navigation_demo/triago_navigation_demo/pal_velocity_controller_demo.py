@@ -3,12 +3,7 @@ import rclpy
 import time
 from rclpy.node import Node
 from rclpy.action import ActionClient
-from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
-from nav_msgs.msg import Path
 from play_motion2_msgs.action import PlayMotion2
-import rcl_interfaces
-from geometry_msgs.msg import PoseStamped
-from action_msgs.msg import GoalStatus
 from pal_nav2_msgs.action import LimitedTimeDriving
 
 import threading
@@ -80,7 +75,7 @@ class VelocityControllerDemo(Node):
         if not self._is_vel_successful:
             self.get_logger().error('Speed Publishing failed')
             return
-    
+
     def vel_goal_response_callback(self, future):
         goal_handle = future.result()
 
@@ -103,7 +98,6 @@ class VelocityControllerDemo(Node):
             self.get_logger().error('Speed Publishing failed with error {}'.format(error))
 
 
-
 def main(args=None):
     rclpy.init(args=args)
     node = VelocityControllerDemo()
@@ -114,7 +108,7 @@ def main(args=None):
 
     node._action_client.wait_for_server()
     node._vel_action_client.wait_for_server()
- 
+
     node.get_logger().info('Starting pal_velocity_controller Demo.')
 
     node.get_logger().info('Motion HOME starting.')
