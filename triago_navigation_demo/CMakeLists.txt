@@ -8,7 +8,6 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
-find_package(nav_msgs REQUIRED)
 find_package(ncl_utils REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(rcl_interfaces REQUIRED)
@@ -19,7 +18,6 @@ find_package(pal_nav2_behaviors REQUIRED)
 ament_python_install_package(${PROJECT_NAME})
 
 set(dependencies
-  nav_msgs
   ncl_utils
   rclpy
   rcl_interfaces
