@@ -36,7 +36,7 @@ class VelocityControllerDemo(Node):
             time.sleep(1.0)
             rclpy.spin_once(self)
         if not self._is_successful:
-            self.get_logger().error("Action failed")
+            self.get_logger().error('Action failed')
             return
 
     def goal_response_callback(self, future):
@@ -44,22 +44,22 @@ class VelocityControllerDemo(Node):
 
         if not goal_handle.accepted:
             self._is_successful = False
-            self.get_logger().error("PlayMotion2 goal rejected")
+            self.get_logger().error('PlayMotion2 goal rejected')
             return
 
-        self.get_logger().info("PlayMotion2 goal accepted")
+        self.get_logger().info('PlayMotion2 goal accepted')
         self._get_result_future = goal_handle.get_result_async()
         self._get_result_future.add_done_callback(self.get_result_callback)
 
     def get_result_callback(self, future):
         result = future.result().result
         error = result.error
-        if error == "":
+        if error == '':
             self._is_successful = True
-            self.get_logger().info("Motion succeeded")
+            self.get_logger().info('Motion succeeded')
         else:
             self._is_successful = False
-            self.get_logger().error("Motion failed with error {}".format(error))
+            self.get_logger().error('Motion failed with error {}'.format(error))
 
     # Limited Velocity Driving Handling
 
@@ -78,7 +78,7 @@ class VelocityControllerDemo(Node):
             time.sleep(1.0)
             rclpy.spin_once(self)
         if not self._is_vel_successful:
-            self.get_logger().error("Speed Publishing failed")
+            self.get_logger().error('Speed Publishing failed')
             return
     
     def vel_goal_response_callback(self, future):
@@ -86,10 +86,10 @@ class VelocityControllerDemo(Node):
 
         if not goal_handle.accepted:
             self._is_vel_successful = False
-            self.get_logger().error("Goal rejected")
+            self.get_logger().error('Goal rejected')
             return
 
-        self.get_logger().info("Goal accepted")
+        self.get_logger().info('Goal accepted')
         self._get_result_future = goal_handle.get_result_async()
         self._get_result_future.add_done_callback(self.get_vel_result_callback)
 
@@ -100,7 +100,7 @@ class VelocityControllerDemo(Node):
             self._is_vel_successful = True
         else:
             self._is_vel_successful = False
-            self.get_logger().error("Speed Publishing failed with error {}".format(error))
+            self.get_logger().error('Speed Publishing failed with error {}'.format(error))
 
 
 
@@ -134,7 +134,7 @@ def main(args=None):
     node.send_vel_goal(0.0, -0.5, 0.0, 2.0)
     node.send_vel_goal(-0.5, 0.0, 0.0, 2.0)
 
-    node.get_logger().info('Path cleared after navigation.')
+    node.get_logger().info('Demo completed!')
 
     rclpy.spin_once(node)
     executor.shutdown()
