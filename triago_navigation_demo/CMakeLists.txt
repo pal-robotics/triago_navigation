@@ -12,8 +12,9 @@ find_package(ncl_utils REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(rcl_interfaces REQUIRED)
 find_package(pal_module_cmake REQUIRED)
-find_package(ncl_utils REQUIRED)
 find_package(pal_nav2_behaviors REQUIRED)
+find_package(nav2_msgs REQUIRED)
+
 
 ament_python_install_package(${PROJECT_NAME})
 
@@ -21,8 +22,8 @@ set(dependencies
   ncl_utils
   rclpy
   rcl_interfaces
-  ncl_utils
   pal_nav2_behaviors
+  nav2_msgs
 )
 
 install(DIRECTORY module DESTINATION share/${PROJECT_NAME})
