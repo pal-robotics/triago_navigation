@@ -31,6 +31,7 @@ set(dependencies
 install(DIRECTORY module DESTINATION share/${PROJECT_NAME})
 
 install(PROGRAMS
+  ${PROJECT_NAME}/pal_velocity_controller_demo.py
   ${PROJECT_NAME}/pal_cartesian_navigation_demo.py
   DESTINATION lib/${PROJECT_NAME}
 )

@@ -1,3 +1,2 @@
 velocity_controller_demo:
-  run: "ncl_utils limited_time_publisher --ros-args -p vel_x:=0.5 -p duration:=2.0 && ros2 run ncl_utils limited_time_publisher --ros-args -p vel_y:=0.5 -p duration:=2.0 && ros2 run ncl_utils limited_time_publisher --ros-args -p vel_z:=0.35 -p duration:=2.0"
-
+  run: "triago_navigation_demo pal_circular_path_following_demo.py --ros-args --remap robot_name:=@robot_type@"
