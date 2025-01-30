@@ -37,8 +37,7 @@ install(PROGRAMS
 )
 
 if(pal_module_cmake_FOUND)
-  pal_register_modules(module/circular_path_following_demo.yaml
-                        module/cartesian_navigation_demo.yaml
+  pal_register_modules(module/cartesian_navigation_demo.yaml
                         module/velocity_controller_demo.yaml)
 elseif(DEFINED ENV{PAL_DISTRO})
   message(FATAL_ERROR "The pal_module_cmake package was not found. Modules not registered.")
