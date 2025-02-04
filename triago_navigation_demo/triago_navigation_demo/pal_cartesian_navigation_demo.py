@@ -7,7 +7,6 @@ from nav2_msgs.msg import SpeedLimit
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 from nav_msgs.msg import Path
 from play_motion2_msgs.action import PlayMotion2
-import rcl_interfaces
 from geometry_msgs.msg import PoseStamped
 from action_msgs.msg import GoalStatus
 from std_msgs.msg import Bool
@@ -27,12 +26,12 @@ class CartesianNavigationDemo(Node):
         self._is_successful = None
         self._start_navigation = False
         self._switch_joy = None
-        
+
         self._speed_publisher = self.create_publisher(SpeedLimit, '/speed_limit', 10)
         self._launch_process = None
         self._launch_thread = None
 
-        ### ASSISTED TELEOP HANDLING ###
+        # ASSISTED TELEOP HANDLING #
         self._teleop_subscription = self.create_subscription(
             Bool,
             '/assisted_teleop_priority',
@@ -40,8 +39,8 @@ class CartesianNavigationDemo(Node):
             10)
         self._teleop_client = ActionClient(self, JoyPriority, '/assisted_teleop_priority_action')
         self._teleop_successful_toggle = None
-        
-        ### JOY HANDLING ###
+
+        # JOY HANDLING #
         self._diagnostics_subscription = self.create_subscription(
             DiagnosticArray,
             '/diagnostics_agg',
@@ -50,7 +49,7 @@ class CartesianNavigationDemo(Node):
         self._joy_client = ActionClient(self, JoyPriority, '/joy_priority_action')
         self._joy_successful_toggle = None
 
-    ### PLAY MOTION2 ###
+    # PLAY MOTION2 #
     def send_goal(self, motion, skip_plan):
         self._is_successful = None
         goal_msg = PlayMotion2.Goal()
@@ -89,7 +88,7 @@ class CartesianNavigationDemo(Node):
             self._is_successful = False
             self.get_logger().error('Motion failed with error {}'.format(error))
 
-    ### ASSISTED TELEOP TOGGLING PRIORITY ###
+    # ASSISTED TELEOP TOGGLING PRIORITY #
     def teleop_sub_callback(self, msg):
         self.get_logger().info(f"Teleop toggle resulting message: {msg.data}")
         self.teleop_priority = msg.data
@@ -107,7 +106,7 @@ class CartesianNavigationDemo(Node):
         if not self._teleop_successful_toggle:
             self.get_logger().error('Teleop action failed')
             return
-        
+
     def teleop_goal_response_callback(self, future):
         goal_handle = future.result()
 
@@ -129,7 +128,7 @@ class CartesianNavigationDemo(Node):
         else:
             self._teleop_successful_toggle = False
             self.get_logger().info(f"Teleop failed with status: {status}")
-        
+
     # JOY TOGGLING PRIORITY
     def diagnostics_callback(self, msg):
         for status in msg.status:
@@ -137,7 +136,7 @@ class CartesianNavigationDemo(Node):
                 if value.key == 'current priority':
                     if value.value == '100':
                         self.get_logger().info('Priority is on joystick, switching')
-                        self._switch_joy = True    
+                        self._switch_joy = True
                     else:
                         self._switch_joy = False
                         return
@@ -155,7 +154,7 @@ class CartesianNavigationDemo(Node):
         if not self._joy_successful_toggle:
             self.get_logger().error('Joy action failed')
             return
-    
+
     def joy_goal_response_callback(self, future):
         goal_handle = future.result()
 
@@ -167,7 +166,7 @@ class CartesianNavigationDemo(Node):
         self.get_logger().info('Joy goal accepted')
         self._get_result_future = goal_handle.get_result_async()
         self._get_result_future.add_done_callback(self.joy_get_result_callback)
-    
+
     def joy_get_result_callback(self, future):
         result = future.result()
         status = result.status
@@ -178,7 +177,6 @@ class CartesianNavigationDemo(Node):
         else:
             self._joy_successful_toggle = False
             self.get_logger().info(f"Joy failed with status: {status}")
-    
 
     def speed_limit_msg(self, max_vel):
         msg = SpeedLimit()
@@ -188,7 +186,7 @@ class CartesianNavigationDemo(Node):
         return msg
 
     def start_periodic_move(self):
-        ### Start the launch file in a separate thread. 
+        # Start the launch file in a separate thread. #
 
         def run_launch():
             launch_command = [
@@ -209,7 +207,7 @@ class CartesianNavigationDemo(Node):
         self._launch_thread.start()
 
     def stop_periodic_move(self):
-        ### Stop the launch file by sending a SIGINT signal. ###
+        # Stop the launch file by sending a SIGINT signal. #
         if self._launch_process is not None:
             self.get_logger().info('Stopping periodic move joints...')
             self._launch_process.send_signal(signal.SIGINT)
@@ -307,7 +305,7 @@ def main(args=None):
         node.get_logger().info('Joy Priority is on autonomous, no need to switch')
         node._start_navigation = True
 
-    if node._start_navigation:     
+    if node._start_navigation:
         node.get_logger().info('Starting pal_cartesian_navigation Demo.')
 
         node.get_logger().info('Motion HOME starting.')

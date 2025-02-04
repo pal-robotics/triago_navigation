@@ -24,7 +24,7 @@ class VelocityControllerDemo(Node):
         self._start_navigation = False
         self._switch_joy = None
 
-        ### ASSISTED TELEOP HANDLING ###
+        # ASSISTED TELEOP HANDLING #
         self._teleop_subscription = self.create_subscription(
             Bool,
             '/assisted_teleop_priority',
@@ -33,7 +33,7 @@ class VelocityControllerDemo(Node):
         self._teleop_client = ActionClient(self, JoyPriority, '/assisted_teleop_priority_action')
         self._teleop_successful_toggle = None
 
-        ### JOY HANDLING ###
+        # JOY HANDLING #
         self._diagnostics_subscription = self.create_subscription(
             DiagnosticArray,
             '/diagnostics_agg',
@@ -42,8 +42,8 @@ class VelocityControllerDemo(Node):
         self._joy_client = ActionClient(self, JoyPriority, '/joy_priority_action')
         self._joy_successful_toggle = None
 
+    # PLAY MOTION2 #
 
-    ### PLAY MOTION2 ###
     def send_goal(self, motion, skip_plan):
         self._is_successful = None
         goal_msg = PlayMotion2.Goal()
@@ -82,7 +82,7 @@ class VelocityControllerDemo(Node):
             self._is_successful = False
             self.get_logger().error('Motion failed with error {}'.format(error))
 
-    ### ASSISTED TELEOP TOGGLING PRIORITY ###
+    # ASSISTED TELEOP TOGGLING PRIORITY #
     def teleop_sub_callback(self, msg):
         self.get_logger().info(f"Teleop toggle resulting message: {msg.data}")
         self.teleop_priority = msg.data
@@ -100,7 +100,7 @@ class VelocityControllerDemo(Node):
         if not self._teleop_successful_toggle:
             self.get_logger().error('Teleop action failed')
             return
-        
+
     def teleop_goal_response_callback(self, future):
         goal_handle = future.result()
 
@@ -122,7 +122,7 @@ class VelocityControllerDemo(Node):
         else:
             self._teleop_successful_toggle = False
             self.get_logger().info(f"Teleop failed with status: {status}")
-        
+
     # JOY TOGGLING PRIORITY
     def diagnostics_callback(self, msg):
         for status in msg.status:
@@ -130,7 +130,7 @@ class VelocityControllerDemo(Node):
                 if value.key == 'current priority':
                     if value.value == '100':
                         self.get_logger().info('Priority is on joystick, switching')
-                        self._switch_joy = True    
+                        self._switch_joy = True
                     else:
                         self._switch_joy = False
                         return
@@ -148,7 +148,7 @@ class VelocityControllerDemo(Node):
         if not self._joy_successful_toggle:
             self.get_logger().error('Joy action failed')
             return
-    
+
     def joy_goal_response_callback(self, future):
         goal_handle = future.result()
 
@@ -160,7 +160,7 @@ class VelocityControllerDemo(Node):
         self.get_logger().info('Joy goal accepted')
         self._get_result_future = goal_handle.get_result_async()
         self._get_result_future.add_done_callback(self.joy_get_result_callback)
-    
+
     def joy_get_result_callback(self, future):
         result = future.result()
         status = result.status
@@ -172,7 +172,7 @@ class VelocityControllerDemo(Node):
             self._joy_successful_toggle = False
             self.get_logger().info(f"Joy failed with status: {status}")
 
-    ### VELOCITY CONTROLLER HANDLING ###
+    # VELOCITY CONTROLLER HANDLING #
     def send_vel_goal(self, vel_x, vel_y, ang_vel, d):
         self._is_vel_successful = None
         goal_msg = LimitedTimeDriving.Goal()
@@ -243,27 +243,25 @@ def main(args=None):
         node.get_logger().info('Joy Priority is on autonomous, no need to switch')
         node._start_navigation = True
 
-    if node._start_navigation:    
+    if node._start_navigation:
 
         node.get_logger().info('Starting pal_velocity_controller Demo.')
-    
         node.get_logger().info('Motion HOME starting.')
         node.send_goal('home', False)
         node.get_logger().info('Motion torso_down starting.')
         node.send_goal('torso_down', False)
-    
         node.get_logger().info('Start navigating.')
         node.send_vel_goal(0.5, 0.0, 0.0, 2.0)
         node.send_vel_goal(0.0, 0.5, 0.0, 2.0)
         node.send_vel_goal(0.0, 0.0, 0.35, 2.0)
-    
+
         node.get_logger().info('Motion torso_up starting.')
         node.send_goal('torso_up', False)
         node.get_logger().info('Start navigating.')
         node.send_vel_goal(0.0, 0.0, -0.35, 2.0)
         node.send_vel_goal(0.0, -0.5, 0.0, 2.0)
         node.send_vel_goal(-0.5, 0.0, 0.0, 2.0)
-    
+
         node.get_logger().info('Demo completed!')
 
     rclpy.spin_once(node)
