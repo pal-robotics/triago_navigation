@@ -14,6 +14,11 @@ find_package(rcl_interfaces REQUIRED)
 find_package(pal_module_cmake REQUIRED)
 find_package(pal_nav2_behaviors REQUIRED)
 find_package(nav2_msgs REQUIRED)
+find_package(nav2_simple_commander REQUIRED)
+find_package(play_motion2_msgs REQUIRED)
+find_package(twist_mux_msgs REQUIRED)
+find_package(diagnostic_msgs REQUIRED)
+find_package(pal_nav2_msgs REQUIRED)
 
 
 ament_python_install_package(${PROJECT_NAME})
@@ -24,6 +29,11 @@ set(dependencies
   rcl_interfaces
   pal_nav2_behaviors
   nav2_msgs
+  nav2_simple_commander
+  play_motion2_msgs
+  twist_mux_msgs
+  diagnostic_msgs
+  pal_nav2_msgs
 )
 
 install(DIRECTORY module DESTINATION share/${PROJECT_NAME})
