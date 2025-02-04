@@ -91,7 +91,7 @@ class CartesianNavigationDemo(Node):
     # ASSISTED TELEOP TOGGLING PRIORITY #
     def teleop_sub_callback(self, msg):
         self.get_logger().info(f"Teleop toggle resulting message: {msg.data}")
-        self.teleop_priority = msg.data
+        self._teleop_priority = msg.data
 
     def teleop_goal(self):
         self._teleop_successful_toggle = None
