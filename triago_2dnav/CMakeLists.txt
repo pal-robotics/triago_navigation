@@ -10,17 +10,21 @@ find_package(ament_cmake_pal QUIET)
 ament_auto_find_build_dependencies()
 
 if(pal_module_cmake_FOUND)
-  pal_register_modules(module/10_localization.yaml
-                      module/10_navigation.yaml
-                      module/10_slam.yaml)
+  pal_register_modules(module/40_localization.yaml
+                      module/40_navigation.yaml
+                      module/40_slam.yaml)
 elseif(DEFINED ENV{PAL_DISTRO})
   message(FATAL_ERROR "The pal_module_cmake package was not found. Modules not registered.")
 endif()
-if(pal_navigation_cfg_cmake_FOUND)
-  pal_navigation_cfg_register_pipeline(pipeline/20_navigation_w_composition.yaml
-                                      pipeline/20_navigation.yaml)
+if(pal_configuration_cmake_FOUND)
+  pal_register_configs(
+    CONFIGS
+      params/40_nav2_controller_triago.yaml
+    RESOURCE_NAME
+      nav2_controller
+  )
 elseif(DEFINED ENV{PAL_DISTRO})
-  message(FATAL_ERROR "The pal_navigation_cfg_cmake package was not found. Pipelines not registered.")
+  message(FATAL_ERROR "The pal_configuration_cmake package was not found. Configurations not registered.")
 endif()
 
 if(BUILD_TESTING)
@@ -28,4 +32,4 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-ament_auto_package(INSTALL_TO_SHARE config launch)
+ament_auto_package()
