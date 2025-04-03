@@ -2,6 +2,11 @@
 Changelog for package triago_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* added triago demo package
+* Contributors: martinaannicelli
+
 0.6.0 (2024-12-02)
 ------------------
 

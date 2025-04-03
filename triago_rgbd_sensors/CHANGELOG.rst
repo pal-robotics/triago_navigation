@@ -2,6 +2,11 @@
 Changelog for package triago_rgbd_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* adopt pal_configuration
+* Contributors: antoniobrandi
+
 0.6.0 (2024-12-02)
 ------------------
 * Merge branch 'abr/feat/deps-and-specs' into 'main'
