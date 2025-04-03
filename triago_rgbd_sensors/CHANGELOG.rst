@@ -2,8 +2,8 @@
 Changelog for package triago_rgbd_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.0 (2025-04-03)
+------------------
 * adopt pal_configuration
 * Contributors: antoniobrandi
 
