@@ -2,6 +2,9 @@
 Changelog for package triago_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.7.0 (2025-04-03)
 ------------------
 * added triago demo package

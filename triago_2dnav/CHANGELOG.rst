@@ -2,6 +2,11 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* added presets for behavior and planner
+* Contributors: martinaannicelli
+
 0.7.0 (2025-04-03)
 ------------------
 * adopt pal_configuration
