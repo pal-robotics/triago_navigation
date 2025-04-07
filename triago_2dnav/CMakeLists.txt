@@ -23,6 +23,18 @@ if(pal_configuration_cmake_FOUND)
     RESOURCE_NAME
       nav2_controller
   )
+  pal_register_configs(
+    CONFIGS
+      params/40_nav2_planner_triago.yaml
+    RESOURCE_NAME
+      nav2_planner
+  )
+  pal_register_configs(
+    CONFIGS
+      params/40_nav2_behaviors_triago.yaml
+    RESOURCE_NAME
+      nav2_behaviors
+  )
 elseif(DEFINED ENV{PAL_DISTRO})
   message(FATAL_ERROR "The pal_configuration_cmake package was not found. Configurations not registered.")
 endif()

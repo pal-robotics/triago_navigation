@@ -1,0 +1,4 @@
+/planner_server:
+  use_preset: "smac_2D_and_fn.yaml"
+  use_if:
+    robot_type: triago
