@@ -1,3 +1,0 @@
-cartesian_navigation_demo:
-  run: "triago_navigation_demo pal_cartesian_navigation_demo.py --ros-args --remap robot_name:=@robot_type@"
-

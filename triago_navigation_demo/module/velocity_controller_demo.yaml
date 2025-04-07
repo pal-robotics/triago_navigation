@@ -1,2 +1,0 @@
-velocity_controller_demo:
-  run: "triago_navigation_demo pal_circular_path_following_demo.py --ros-args --remap robot_name:=@robot_type@"
