@@ -1,0 +1,4 @@
+/behavior_server:
+  use_preset: "spin_backup_wait_param_config_limited.yaml"
+  use_if:
+    robot_type: triago
