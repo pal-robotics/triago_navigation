@@ -2,6 +2,9 @@
 Changelog for package triago_rgbd_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.8.0 (2025-04-07)
 ------------------
 

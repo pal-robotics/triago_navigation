@@ -2,6 +2,9 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.8.0 (2025-04-07)
 ------------------
 * added presets for behavior and planner
