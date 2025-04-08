@@ -2,8 +2,8 @@
 Changelog for package triago_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.9.0 (2025-04-08)
+------------------
 * removed triago nav demo
 * Contributors: martinaannicelli
 
