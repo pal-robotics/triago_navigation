@@ -1,7 +1,0 @@
-periodic_move_joint:
-  ros__parameters:
-    controllers: [arm_right_controller, arm_left_controller, arm_head_controller]
-    joints_motion_amplitude: [0.3, 0.45, 0.3, 0.15, 0.3, 0.6, 0.3, -0.3, 0.45, -0.3, 0.15, -0.3, 0.6, -0.3, -0.3, 0.45, 0.3, 0.15, 0.3, 0.6, 0.3,]
-    joints_start_pos: [-1.75, -1.27, 0.0, 0.0, 0.0, 0.0, 0.0, 1.75, -1.27, 0.0, 0.0, 0.0, 0.0, 0.0, -1.57, 0.7, 0.0, -0.16, 0.0, 0.083, 0.0]
-    joints_motion_duration: 5.0
-    joints_to_move: [arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint, arm_right_6_joint, arm_right_7_joint, arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_left_6_joint, arm_left_7_joint, arm_head_1_joint, arm_head_2_joint, arm_head_3_joint, arm_head_4_joint, arm_head_5_joint, arm_head_6_joint, arm_head_7_joint]

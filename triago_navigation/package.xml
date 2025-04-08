@@ -12,7 +12,6 @@
 
   <exec_depend>triago_laser_sensors</exec_depend>
   <exec_depend>triago_2dnav</exec_depend>
-  <exec_depend>triago_navigation_demo</exec_depend>
   <exec_depend>triago_rgbd_sensors</exec_depend>
 
   <export>
