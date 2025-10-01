@@ -1,4 +1,4 @@
 /controller_server:
-  use_preset: "mppi_omni_and_pd.yaml"
+  use_preset: "mppi_omni_and_assisted_teleop_and_pd.yaml"
   use_if:
     robot_type: triago
