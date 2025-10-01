@@ -2,6 +2,11 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* using assisted_teleop controller configuration
+* Contributors: andreacapodacqua
+
 0.9.0 (2025-04-08)
 ------------------
 
