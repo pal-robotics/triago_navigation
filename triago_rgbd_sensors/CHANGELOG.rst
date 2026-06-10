@@ -2,8 +2,8 @@
 Changelog for package triago_rgbd_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.10.1 (2026-06-10)
+-------------------
 * Remove realsense_camera_cfg dependency
 * Contributors: narcismiguel
 
