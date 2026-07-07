@@ -2,6 +2,11 @@
 Changelog for package triago_2dnav
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* adapt eulero refactor
+* Contributors: antoniobrandi
+
 0.10.1 (2026-06-10)
 -------------------
 
