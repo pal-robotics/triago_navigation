@@ -2,6 +2,11 @@
 Changelog for package triago_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Bump cmake_minimum_required to 3.10
+* Contributors: Mathias Lüdtke
+
 0.11.0 (2026-07-07)
 -------------------
 
