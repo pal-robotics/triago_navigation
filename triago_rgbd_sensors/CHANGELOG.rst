@@ -2,8 +2,8 @@
 Changelog for package triago_rgbd_sensors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.11.1 (2026-11-18)
+-------------------
 * Bump cmake_minimum_required to 3.10
 * Contributors: Mathias Lüdtke
 
